@@ -93,13 +93,16 @@
               label="Leader Phone Number"
               required
             ></v-text-field>
-            <v-text-field
+            <v-select
               prepend-icon="person"
-              name="ms_name"
-              v-model="name"
-              label="Master Stockist Name"
-              required
-            ></v-text-field>
+              :items="masterStockist"
+              label="Master Stockist"
+              item-value="id"
+              item-text="value"
+              v-model="master_stockist"
+              single-line
+              bottom
+            ></v-select>
           </v-card>
 
           <v-btn color="primary" @click="register">Submit</v-btn>
@@ -165,6 +168,17 @@ export default {
       imageName: "",
       imageUrl: "",
       imageFile: "",
+      masterStockist: [
+        { id: 0, value: "HQ" },
+        { id: 1, value: "Master Stockist Wan Zira" },
+        { id: 2, value: "Master Stockist Siti Khuzaimah" },
+        { id: 3, value: "Master Stockist Eddy Syamsinoor" },
+        { id: 4, value: "Master Stockist Siti Arfah" },
+        { id: 5, value: "Master Stockist Siti Azlina" },
+        { id: 6, value: "Master Stockist Wan Zuraidal" },
+        { id: 7, value: "Master Stockist Nazariah" },
+        { id: 8, value: "Master Stockist Masdiana Mohamadia" }
+      ],
       states: [
         { key: 1, value: "Wilayah Persekutuan" },
         { key: 2, value: "Selangor" },
