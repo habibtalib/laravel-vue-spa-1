@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <v-container>Cart</v-container>
+    <v-container>History</v-container>
   </v-content>
 </template>
 <script>
