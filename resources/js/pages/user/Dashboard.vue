@@ -1,25 +1,14 @@
 <template>
-    <div class="container">
-        <div class="card card-default">
-            <div class="card-header">Dashboard</div>
-
-            <div class="card-body">
-                Bienvenue
-            </div>
-        </div>
-    </div>
+  <v-content class="container">
+    <v-container style="position: relative;top: 13%;" class="text-xs-center">User Dashboard</v-container>
+  </v-content>
 </template>
 
 <script>
-
-  export default {
-    data() {
-      return {
-        //
-      }
-    },
-    components: {
-      //
-    }
-  }
+export default {
+  mounted() {
+    //
+  },
+  components: {}
+};
 </script>

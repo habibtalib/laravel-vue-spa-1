@@ -9,12 +9,12 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(15);
 
         return response()->json(
             [
                 'status' => 'success',
-                'users' => $users->toArray()
+                'users' => $users->toArray(),
             ], 200);
     }
 
@@ -25,9 +25,8 @@ class UserController extends Controller
         return response()->json(
             [
                 'status' => 'success',
-                'user' => $user->toArray()
+                'user' => $user->toArray(),
             ], 200);
     }
-
 
 }
