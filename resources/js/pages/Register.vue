@@ -7,69 +7,106 @@
         >Validation Error, Please Enter Valid Information.</p>
         <p v-else>Error, System facing an issue at the moment. Please Contact Administrator</p>
       </div>
-      <v-card flat>
-        <v-card-title primary-title>
-          <h4>Register</h4>
-        </v-card-title>
-        <v-form>
-          <v-text-field prepend-icon="person" name="name" v-model="name" label="Full Name"></v-text-field>
-          <v-text-field prepend-icon="person" name="email" v-model="email" label="Email"></v-text-field>
-          <v-text-field prepend-icon="person" name="phone" v-model="phone" label="Phone Number"></v-text-field>
-          <v-text-field
-            prepend-icon="lock"
-            name="nric"
-            v-model="nric"
-            label="MyKad Number"
-            type="text"
-          ></v-text-field>
-          <img :src="imageUrl" height="150" v-if="imageUrl">
-          <v-text-field
-            label="Upload Photo"
-            @click="pickFile"
-            v-model="imageName"
-            prepend-icon="attach_file"
-          ></v-text-field>
-          <input
-            type="file"
-            style="display: none"
-            ref="image"
-            accept="image/*"
-            @change="onFilePicked"
-          >
-          <v-text-field
-            prepend-icon="lock"
-            name="password"
-            v-model="password"
-            label="Password"
-            type="password"
-          ></v-text-field>
-          <v-text-field
-            prepend-icon="lock"
-            name="password"
-            v-model="password_confirmation"
-            label="Confirm Password"
-            type="password"
-          ></v-text-field>
-          <v-text-field prepend-icon="map" name="city" v-model="city" label="City" type="text"></v-text-field>
-          <v-text-field
-            prepend-icon="map"
-            name="province"
-            v-model="province"
-            label="Porvince"
-            type="text"
-          ></v-text-field>
-          <v-select
-            prepend-icon="map"
-            :items="states"
-            item-text="value"
-            item-value="key"
-            label="States"
-          ></v-select>
-          <v-card-actions>
-            <v-btn primary large block @click="register">Submit</v-btn>
-          </v-card-actions>
-        </v-form>
-      </v-card>
+      <v-stepper v-model="e1" vertical>
+        <v-stepper-step step="1" complete>User Information</v-stepper-step>
+        <v-stepper-content step="1">
+          <v-card class="mb-5" color="#bf1f31">
+            <v-text-field
+              prepend-icon="person"
+              name="name"
+              v-model="name"
+              label="Full Name"
+              required
+            ></v-text-field>
+            <v-text-field
+              prepend-icon="mail"
+              v-model="email"
+              autocomplete="off"
+              label="Email"
+              required
+            ></v-text-field>
+            <v-text-field prepend-icon="person" v-model="phone" label="Phone Number" required></v-text-field>
+            <v-text-field prepend-icon="lock" v-model="nric" label="MyKad Number" type="text"></v-text-field>
+            <img :src="imageUrl" height="150" v-if="imageUrl">
+            <v-text-field
+              label="Upload Photo"
+              @click="pickFile"
+              v-model="imageName"
+              prepend-icon="attach_file"
+            ></v-text-field>
+            <input
+              type="file"
+              style="display: none"
+              ref="image"
+              accept="image/*"
+              @change="onFilePicked"
+            >
+            <v-text-field
+              prepend-icon="lock"
+              v-model="password"
+              autocomplete="false"
+              label="Password"
+              type="password"
+            ></v-text-field>
+            <v-text-field
+              prepend-icon="lock"
+              v-model="password_confirmation"
+              autocomplete="false"
+              label="Confirm Password"
+              type="password"
+            ></v-text-field>
+            <v-text-field prepend-icon="map" name="city" v-model="city" label="City" type="text"></v-text-field>
+            <v-text-field
+              prepend-icon="map"
+              name="province"
+              v-model="province"
+              label="Porvince"
+              type="text"
+            ></v-text-field>
+            <v-select
+              prepend-icon="map"
+              :items="states"
+              item-text="value"
+              item-value="key"
+              label="States"
+            ></v-select>
+          </v-card>
+
+          <v-btn color="primary" @click="e1 = 2">Next</v-btn>
+
+          <v-btn flat>Cancel</v-btn>
+        </v-stepper-content>
+        <v-stepper-step step="2" complete>Referals</v-stepper-step>
+        <v-stepper-content step="2">
+          <v-card class="mb-5" color="#bf1f31" height="200px">
+            <v-text-field
+              prepend-icon="person"
+              name="leader_name"
+              v-model="name"
+              label="Leader Name"
+              required
+            ></v-text-field>
+            <v-text-field
+              prepend-icon="person"
+              name="leader_phone"
+              v-model="name"
+              label="Leader Phone Number"
+              required
+            ></v-text-field>
+            <v-text-field
+              prepend-icon="person"
+              name="ms_name"
+              v-model="name"
+              label="Master Stockist Name"
+              required
+            ></v-text-field>
+          </v-card>
+
+          <v-btn color="primary" @click="register">Submit</v-btn>
+
+          <v-btn flat @click="e1 = 1">Previous</v-btn>
+        </v-stepper-content>
+      </v-stepper>
     </v-container>
   </v-content>
   <!-- <div class="container">
@@ -112,8 +149,10 @@ export default {
   data() {
     return {
       name: "",
+      e1: 0,
       email: "",
       password: "",
+      valid: true,
       password_confirmation: "",
       city: "",
       phone: "",
@@ -163,7 +202,6 @@ export default {
       }
     },
     register() {
-      this.snackbar = true;
       var app = this;
       this.$auth.register({
         data: {
