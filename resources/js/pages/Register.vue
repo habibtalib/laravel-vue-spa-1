@@ -11,13 +11,7 @@
         <v-stepper-step step="1" complete>User Information</v-stepper-step>
         <v-stepper-content step="1">
           <v-card class="mb-5" color="#bf1f31">
-            <v-text-field
-              prepend-icon="person"
-              name="name"
-              v-model="name"
-              label="Full Name"
-              required
-            ></v-text-field>
+            <v-text-field prepend-icon="person" v-model="name" label="Full Name" required></v-text-field>
             <v-text-field
               prepend-icon="mail"
               v-model="email"
@@ -27,7 +21,7 @@
             ></v-text-field>
             <v-text-field prepend-icon="person" v-model="phone" label="Phone Number" required></v-text-field>
             <v-text-field prepend-icon="lock" v-model="nric" label="MyKad Number" type="text"></v-text-field>
-            <img :src="imageUrl" height="150" v-if="imageUrl">
+            <!-- <img :src="imageUrl" height="150" v-if="imageUrl">
             <v-text-field
               label="Upload Photo"
               @click="pickFile"
@@ -36,11 +30,12 @@
             ></v-text-field>
             <input
               type="file"
+              multiple
               style="display: none"
               ref="image"
               accept="image/*"
               @change="onFilePicked"
-            >
+            >-->
             <v-text-field
               prepend-icon="lock"
               v-model="password"
@@ -55,19 +50,14 @@
               label="Confirm Password"
               type="password"
             ></v-text-field>
-            <v-text-field prepend-icon="map" name="city" v-model="city" label="City" type="text"></v-text-field>
-            <v-text-field
-              prepend-icon="map"
-              name="province"
-              v-model="province"
-              label="Porvince"
-              type="text"
-            ></v-text-field>
+            <v-text-field prepend-icon="map" v-model="city" label="City" type="text"></v-text-field>
+            <v-text-field prepend-icon="map" v-model="province" label="Porvince" type="text"></v-text-field>
             <v-select
               prepend-icon="map"
               :items="states"
               item-text="value"
               item-value="key"
+              v-model="state"
               label="States"
             ></v-select>
           </v-card>
@@ -79,17 +69,10 @@
         <v-stepper-step step="2" complete>Referals</v-stepper-step>
         <v-stepper-content step="2">
           <v-card class="mb-5" color="#bf1f31" height="200px">
+            <v-text-field prepend-icon="person" v-model="leader_name" label="Leader Name" required></v-text-field>
             <v-text-field
               prepend-icon="person"
-              name="leader_name"
-              v-model="name"
-              label="Leader Name"
-              required
-            ></v-text-field>
-            <v-text-field
-              prepend-icon="person"
-              name="leader_phone"
-              v-model="name"
+              v-model="leader_phone"
               label="Leader Phone Number"
               required
             ></v-text-field>
@@ -219,6 +202,8 @@ export default {
       var app = this;
       this.$auth.register({
         data: {
+          name: app.name,
+          // photo: app.imageFile,
           email: app.email,
           password: app.password,
           password_confirmation: app.password_confirmation,
@@ -226,7 +211,10 @@ export default {
           nric: app.nric,
           phone: app.phone,
           state: app.state,
-          province: app.province
+          province: app.province,
+          leader_name: app.leader_name,
+          leader_phone: app.leader_phone,
+          master_stockist: app.master_stockist
         },
         success: function() {
           app.success = true;

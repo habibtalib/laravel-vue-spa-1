@@ -14,18 +14,23 @@ class AuthController extends Controller
     {
         $v = Validator::make($request->all(), [
             'email' => 'required|email|unique:users',
-            'password'  => 'required|min:3|confirmed',
+            'password' => 'required|min:3|confirmed',
         ]);
 
-        if ($v->fails())
-        {
+        if ($v->fails()) {
             return response()->json([
                 'error' => 'registration_validation_error',
-                'errors' => $v->errors()
+                'errors' => $v->errors(),
             ], 422);
         }
 
-        $user = new User;
+        if (!empty($request->file('photo'))) {
+            $photo = $request->file('photo');
+            $filename = $photo->store('img', 'public');
+            $request['photo'] = $filename;
+        }
+
+        $user = new User($request->all());
         $user->email = $request->email;
         $user->password = bcrypt($request->password);
         $user->save();
@@ -50,7 +55,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'msg' => 'Logged out Successfully.'
+            'msg' => 'Logged out Successfully.',
         ], 200);
     }
 
@@ -60,7 +65,7 @@ class AuthController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $user
+            'data' => $user,
         ]);
     }
 
@@ -80,4 +85,3 @@ class AuthController extends Controller
         return Auth::guard();
     }
 }
-
