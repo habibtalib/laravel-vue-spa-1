@@ -129,6 +129,7 @@ class ShopController extends Controller
     {
         //
         $tracker = ProductTracker::create($request->all());
+        $tracker_item = ProductTrackerItem::create($request->all());
         return redirect('/#!/success');
     }
 

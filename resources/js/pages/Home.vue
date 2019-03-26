@@ -47,7 +47,7 @@
         <v-icon>lock</v-icon>
       </v-btn>
 
-      <v-btn color="#bf1f31" flat to="genelogy">
+      <v-btn color="#bf1f31" flat href="/meeracle.apk">
         <span>Download</span>
         <v-icon>tablet</v-icon>
       </v-btn>
