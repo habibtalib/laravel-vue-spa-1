@@ -129,7 +129,7 @@ export default {
           //   icon: "important_devices"
           // },
           { icon: "store", text: "Sell Product", path: "sell" },
-          { icon: "store", text: "Sell Merchandise", path: "sell" },
+          { icon: "store", text: "Sell Merchandise", path: "merchandise" },
           { icon: "people", text: "Genelogy", path: "genelogy" },
           { icon: "history", text: "History", path: "history" }
         ],

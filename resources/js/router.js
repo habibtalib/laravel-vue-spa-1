@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Sell from "./pages/Sell";
+import Merchandise from "./pages/Merchandise";
 import Cart from "./pages/Cart";
 import Genelogy from "./pages/Genelogy";
 import History from "./pages/History";
@@ -61,6 +62,14 @@ const routes = [
         path: "/sell",
         name: "sell",
         component: Sell,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/merchandise",
+        name: "merchandise",
+        component: Merchandise,
         meta: {
             auth: true
         }

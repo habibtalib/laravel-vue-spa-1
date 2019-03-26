@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as types from './mutation-types'
+import axios from "axios";
 
 Vue.use(Vuex)
 
 const debug = process.env.NODE_ENV !== 'production'
-
 // initial state
 const state = {
     added: [],
@@ -24,6 +24,7 @@ const state = {
         }
     ]
 };
+
 
 // getters
 const getters = {
@@ -50,6 +51,14 @@ const actions = {
             id: product.id,
             serial: product.serial
         });
+    },
+    loadProducts({ commit }) {
+        axios
+            .get('/products')
+            .then(r => r.data)
+            .then(coins => {
+                commit("SET_COINS", coins.data);
+            })
     }
 }
 
@@ -62,6 +71,9 @@ const mutations = {
             serial,
             quantity: 1
         })
+    },
+    SET_COINS(state, coins) {
+        state.all = coins;
     }
 }
 

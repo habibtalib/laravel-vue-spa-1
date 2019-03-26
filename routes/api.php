@@ -26,5 +26,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     // Users
     Route::get('users', 'UserController@index')->middleware('isAdmin');
     Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
+    Route::get('products', 'ProductController@index');
     Route::post('serial', 'ShopController@getSerialNumber');
 });
