@@ -89,42 +89,6 @@
       </v-btn>
     </v-toolbar>
     <router-view></router-view>
-    <v-bottom-nav :value="true" absolute color="transparent" v-if="$auth.check()">
-      <v-btn color="#bf1f31" flat to="sell">
-        <span>
-          <span>Sell Product</span>
-        </span>
-        <v-icon>store</v-icon>
-      </v-btn>
-
-      <v-btn color="#bf1f31" flat to="genelogy">
-        <span>Genelogy</span>
-        <v-icon>people</v-icon>
-      </v-btn>
-
-      <v-btn color="#bf1f31" flat to="history">
-        <span>History</span>
-        <v-icon>history</v-icon>
-      </v-btn>
-    </v-bottom-nav>
-    <v-bottom-nav :value="true" absolute color="transparent" v-else>
-      <v-btn color="#bf1f31" flat to="sell">
-        <span>
-          <span>Login</span>
-        </span>
-        <v-icon>lock</v-icon>
-      </v-btn>
-
-      <v-btn color="#bf1f31" flat to="genelogy">
-        <span>Download</span>
-        <v-icon>tablet</v-icon>
-      </v-btn>
-
-      <v-btn color="#bf1f31" flat to="history">
-        <span>Register</span>
-        <v-icon>history</v-icon>
-      </v-btn>
-    </v-bottom-nav>
   </v-app>
 </template>
 
