@@ -29,4 +29,15 @@ class UserController extends Controller
             ], 200);
     }
 
+    public function getDownline()
+    {
+        $members = User::where('parent_id', auth()->user()->id)->get();
+        return response()->json(
+            [
+                'status' => 'success',
+                'user' => $members->toArray(),
+            ], 200);
+
+    }
+
 }

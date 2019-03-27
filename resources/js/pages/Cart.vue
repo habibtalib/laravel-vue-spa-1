@@ -9,7 +9,8 @@
         </v-card-title>
         <p v-show="!products.length">
           <i>Your cart is empty!</i>
-          <router-link to="sell">Go Sell</router-link>
+          <router-link to="sell">Go Scan Product</router-link>or
+          <router-link to="merchandise">Go Sell Merchandise</router-link>
         </p>
         <table class="table is-striped" v-show="products.length">
           <thead>
@@ -44,9 +45,17 @@
           </div>
         </v-card-title>
         <v-form>
-          <v-text-field v-model="name" label="Customer Name"></v-text-field>
+          <v-select
+            prepend-icon="people"
+            :items="downline"
+            item-text="name"
+            item-value="id"
+            v-model="downline_id"
+            label="Downline"
+          ></v-select>
+          <v-text-field prepend-icon="people" v-model="name" label="Customer Name"></v-text-field>
 
-          <v-text-field v-model="email" label="E-mail" required></v-text-field>
+          <v-text-field prepend-icon="people" v-model="email" label="E-mail" required></v-text-field>
           <p>
             <v-btn @click="checkout">Checkout</v-btn>
           </p>
@@ -58,6 +67,30 @@
 <script>
 import { mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      email: "",
+      name: "",
+      downline: [],
+      downline_id: ""
+    };
+  },
+  created() {
+    let self = this;
+    axios
+      .get("/downline/")
+      .then(function(response) {
+        // handle success
+        self.downline = response.data.user;
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      })
+      .then(function() {
+        // always executed
+      });
+  },
   computed: {
     ...mapGetters({
       products: "cartProducts"
