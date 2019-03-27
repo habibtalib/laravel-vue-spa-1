@@ -52,7 +52,7 @@
         <v-icon>tablet</v-icon>
       </v-btn>
 
-      <v-btn color="#bf1f31" flat to="history">
+      <v-btn color="#bf1f31" flat to="register">
         <span>Register</span>
         <v-icon>history</v-icon>
       </v-btn>

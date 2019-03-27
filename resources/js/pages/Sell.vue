@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-container style="position: relative;top: 1%;" class="text-xs-center">
-      <qrcode-stream @decode="onDecode"></qrcode-stream>
+      <qrcode-stream @decode="onDecode()"></qrcode-stream>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field v-model="serial" label="Serial Number" required></v-text-field>
         <v-select
