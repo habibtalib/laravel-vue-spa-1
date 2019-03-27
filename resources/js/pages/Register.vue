@@ -4,8 +4,10 @@
       <div class="alert alert-danger" v-if="has_error && !success">
         <p
           v-if="error == 'registration_validation_error'"
-        >Validation Error, Please Enter Valid Information.</p>
-        <p v-else>Error, System facing an issue at the moment. Please Contact Administrator</p>
+        >Validation Error, Please Enter Valid Information. {{errors}}</p>
+        <p
+          v-else
+        >Error, System facing an issue at the moment. Please Contact Administrator {{errors}}</p>
       </div>
       <v-stepper v-model="e1" vertical>
         <v-stepper-step step="1" complete>User Information</v-stepper-step>

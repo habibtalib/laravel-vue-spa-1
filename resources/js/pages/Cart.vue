@@ -54,8 +54,18 @@
             label="Downline"
           ></v-select>
           <v-text-field prepend-icon="people" v-model="name" label="Customer Name"></v-text-field>
-
+          <v-text-field prepend-icon="person" v-model="phone" label="Phone Number" required></v-text-field>
           <v-text-field prepend-icon="people" v-model="email" label="E-mail" required></v-text-field>
+          <v-text-field prepend-icon="map" v-model="city" label="City" type="text"></v-text-field>
+          <v-text-field prepend-icon="map" v-model="province" label="Porvince" type="text"></v-text-field>
+          <v-select
+            prepend-icon="map"
+            :items="states"
+            item-text="value"
+            item-value="key"
+            v-model="state"
+            label="States"
+          ></v-select>
           <p>
             <v-btn @click="checkout">Checkout</v-btn>
           </p>
@@ -71,8 +81,21 @@ export default {
     return {
       email: "",
       name: "",
+      phone: "",
+      city: "",
+      state: "",
+      province: "",
       downline: [],
-      downline_id: ""
+      downline_id: "",
+      states: [
+        { key: 1, value: "Wilayah Persekutuan" },
+        { key: 2, value: "Selangor" },
+        { key: 3, value: "Pahang" },
+        { key: 4, value: "Perak" },
+        { key: 5, value: "Kelantan" },
+        { key: 6, value: "Kedah" },
+        { key: 7, value: "Negeri Sembilan" }
+      ]
     };
   },
   created() {
@@ -102,7 +125,29 @@ export default {
     }
   },
   methods: {
-    checkout() {}
+    checkout() {
+      axios.post("/checkout/"),
+        {
+          products,
+          downline_id,
+          name,
+          email,
+          city,
+          state,
+          province
+        }
+          .then(function(response) {
+            // handle success
+            self.downline = response.data.user;
+          })
+          .catch(function(error) {
+            // handle error
+            console.log(error);
+          })
+          .then(function() {
+            // always executed
+          });
+    }
   }
 };
 </script>

@@ -29,4 +29,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('products', 'ProductController@index');
     Route::post('serial', 'ShopController@getSerialNumber');
     Route::get('downline', 'UserController@getDownline');
+    Route::post('checkout', 'ShopController@checkout');
+
 });
