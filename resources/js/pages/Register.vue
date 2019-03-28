@@ -162,7 +162,10 @@ export default {
         { id: 5, value: "Master Stockist Siti Azlina" },
         { id: 6, value: "Master Stockist Wan Zuraidal" },
         { id: 7, value: "Master Stockist Nazariah" },
-        { id: 8, value: "Master Stockist Masdiana Mohamadia" }
+        { id: 8, value: "Master Stockist Masdiana Mohamadia" },
+        { id: 9, value: "Master Stockist Nurul Aini" },
+        { id: 10, value: "Master Stockist Nur Shafiqah" },
+        { id: 11, value: "Master Stockist Noraishah Isnin" }
       ],
       states: [
         { key: 1, value: "Wilayah Persekutuan" },
