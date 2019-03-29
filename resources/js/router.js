@@ -14,6 +14,7 @@ import Setting from "./pages/Setting";
 import Checkout from "./pages/Checkout";
 import Dashboard from "./pages/user/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
+import ThankYou from "./pages/ThankYou";
 
 // Routes
 const routes = [
@@ -21,6 +22,14 @@ const routes = [
         path: "/",
         name: "home",
         component: Home,
+        meta: {
+            auth: undefined
+        }
+    },
+    {
+        path: "/thankyou",
+        name: "thankyou",
+        component: ThankYou,
         meta: {
             auth: undefined
         }

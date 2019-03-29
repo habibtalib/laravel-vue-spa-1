@@ -1,29 +1,43 @@
 <template>
   <v-content>
     <v-container class="text-xs-center">
-      <div class="alert alert-danger" v-if="has_error && !success">
-        <p
-          v-if="error == 'registration_validation_error'"
-        >Validation Error, Please Enter Valid Information. {{errors}}</p>
-        <p
-          v-else
-        >Error, System facing an issue at the moment. Please Contact Administrator {{errors}}</p>
-      </div>
-      <v-stepper v-model="e1" vertical>
-        <v-stepper-step step="1" complete>User Information</v-stepper-step>
-        <v-stepper-content step="1">
-          <v-card class="mb-5" color="#bf1f31">
-            <v-text-field prepend-icon="person" v-model="name" label="Full Name" required></v-text-field>
-            <v-text-field
-              prepend-icon="mail"
-              v-model="email"
-              autocomplete="off"
-              label="Email"
-              required
-            ></v-text-field>
-            <v-text-field prepend-icon="person" v-model="phone" label="Phone Number" required></v-text-field>
-            <v-text-field prepend-icon="lock" v-model="nric" label="MyKad Number" type="text"></v-text-field>
-            <!-- <img :src="imageUrl" height="150" v-if="imageUrl">
+      <v-form>
+        <div class="alert alert-danger" v-if="has_error && !success">
+          <p
+            v-if="error == 'registration_validation_error'"
+          >Validation Error, Please Enter Valid Information. {{errors}}</p>
+          <p
+            v-else
+          >Error, System facing an issue at the moment. Please Contact Administrator {{errors}}</p>
+        </div>
+        <v-stepper v-model="e1" vertical>
+          <v-stepper-step step="1" complete>User Information</v-stepper-step>
+          <v-stepper-content step="1">
+            <v-card class="mb-5" color="#bf1f31">
+              <v-text-field prepend-icon="person" v-model="name" label="Full Name" required></v-text-field>
+              <v-text-field
+                prepend-icon="mail"
+                v-model="email"
+                autocomplete="off"
+                label="Email"
+                required
+              ></v-text-field>
+              <v-text-field
+                prepend-icon="person"
+                v-model="phone"
+                label="Phone Number"
+                autocomplete="off"
+                required
+              ></v-text-field>
+              <v-text-field
+                prepend-icon="lock"
+                v-model="nric"
+                label="MyKad Number"
+                autocomplete="off"
+                type="text"
+                required
+              ></v-text-field>
+              <!-- <img :src="imageUrl" height="150" v-if="imageUrl">
             <v-text-field
               label="Upload Photo"
               @click="pickFile"
@@ -37,64 +51,70 @@
               ref="image"
               accept="image/*"
               @change="onFilePicked"
-            >-->
-            <v-text-field
-              prepend-icon="lock"
-              v-model="password"
-              autocomplete="false"
-              label="Password"
-              type="password"
-            ></v-text-field>
-            <v-text-field
-              prepend-icon="lock"
-              v-model="password_confirmation"
-              autocomplete="false"
-              label="Confirm Password"
-              type="password"
-            ></v-text-field>
-            <v-text-field prepend-icon="map" v-model="city" label="City" type="text"></v-text-field>
-            <v-text-field prepend-icon="map" v-model="province" label="Porvince" type="text"></v-text-field>
-            <v-select
-              prepend-icon="map"
-              :items="states"
-              item-text="value"
-              item-value="key"
-              v-model="state"
-              label="States"
-            ></v-select>
-          </v-card>
+              >-->
+              <v-text-field
+                prepend-icon="lock"
+                v-model="password"
+                autocomplete="false"
+                label="Password"
+                type="password"
+              ></v-text-field>
+              <v-text-field
+                prepend-icon="lock"
+                v-model="password_confirmation"
+                autocomplete="false"
+                label="Confirm Password"
+                type="password"
+              ></v-text-field>
+              <v-text-field prepend-icon="map" v-model="city" label="City" type="text"></v-text-field>
+              <v-text-field prepend-icon="map" v-model="province" label="Porvince" type="text"></v-text-field>
+              <v-select
+                prepend-icon="map"
+                :items="states"
+                item-text="value"
+                item-value="key"
+                v-model="state"
+                label="States"
+              ></v-select>
+            </v-card>
 
-          <v-btn color="primary" @click="e1 = 2">Next</v-btn>
+            <v-btn color="primary" @click="e1 = 2">Next</v-btn>
 
-          <v-btn flat>Cancel</v-btn>
-        </v-stepper-content>
-        <v-stepper-step step="2" complete>Referals</v-stepper-step>
-        <v-stepper-content step="2">
-          <v-card class="mb-5" color="#bf1f31" height="200px">
-            <v-text-field prepend-icon="person" v-model="leader_name" label="Leader Name" required></v-text-field>
-            <v-text-field
-              prepend-icon="person"
-              v-model="leader_phone"
-              label="Leader Phone Number"
-              required
-            ></v-text-field>
-            <v-select
-              prepend-icon="person"
-              :items="masterStockist"
-              label="Master Stockist"
-              item-value="id"
-              item-text="value"
-              v-model="master_stockist"
-              single-line
-              bottom
-            ></v-select>
-          </v-card>
+            <v-btn flat>Cancel</v-btn>
+          </v-stepper-content>
+          <v-stepper-step step="2" complete>Referals</v-stepper-step>
+          <v-stepper-content step="2">
+            <v-card class="mb-5" color="#bf1f31" height="200px">
+              <v-text-field
+                prepend-icon="person"
+                v-model="leader_name"
+                label="Leader Name"
+                required
+              ></v-text-field>
+              <v-text-field
+                prepend-icon="person"
+                v-model="leader_phone"
+                label="Leader Phone Number"
+                required
+              ></v-text-field>
+              <v-select
+                prepend-icon="person"
+                :items="masterStockist"
+                label="Master Stockist"
+                item-value="id"
+                item-text="value"
+                v-model="master_stockist"
+                single-line
+                menu-props="bottom"
+              ></v-select>
+            </v-card>
 
-          <v-btn color="primary" @click="register">Submit</v-btn>
+            <v-btn color="primary" @click="register">Submit</v-btn>
 
-          <v-btn flat @click="e1 = 1">Previous</v-btn>
-        </v-stepper-content>
-      </v-stepper>
+            <v-btn flat @click="e1 = 1">Previous</v-btn>
+          </v-stepper-content>
+        </v-stepper>
+      </v-form>
     </v-container>
   </v-content>
   <!-- <div class="container">
@@ -145,6 +165,10 @@ export default {
       city: "",
       phone: "",
       nric: "",
+      leader_name: "",
+      leader_phone: "",
+      master_stockist: "",
+      state: "",
       province: "",
       has_error: false,
       error: "",
