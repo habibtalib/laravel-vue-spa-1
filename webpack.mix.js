@@ -15,17 +15,17 @@ const dependencies = Object.keys(package.dependencies);
  | file for the application as well as bundling up all the JS files.
  |
  */
-if (mix.inProduction()) {
-    mix.webpackConfig({
-        plugins: [
-            new workboxPlugin.InjectManifest({
-                swSrc: "public/sw-offline.js", // more control over the caching
-                swDest: "sw.js", // the service-worker file name
-                importsDirectory: "service-worker" // have a dedicated folder for sw files
-            })
-        ]
-    });
-}
+// if (mix.inProduction()) {
+//     mix.webpackConfig({
+//         plugins: [
+//             new workboxPlugin.InjectManifest({
+//                 swSrc: "public/sw-offline.js", // more control over the caching
+//                 swDest: "sw.js", // the service-worker file name
+//                 importsDirectory: "service-worker" // have a dedicated folder for sw files
+//             })
+//         ]
+//     });
+// }
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 // mix.extract(dependencies)

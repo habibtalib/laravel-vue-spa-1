@@ -15,9 +15,9 @@ import VueCarousel from 'vue-carousel';
 import Vuex from "vuex";
 import store from "./store/index.js";
 // import VueCarousel from "@chenfengyuan/vue-carousel";
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js");
-}
+// if ("serviceWorker" in navigator) {
+//     navigator.serviceWorker.register("/sw.js");
+// }
 
 Vue.use(VueQrcodeReader);
 Vue.use(VueCarousel);
