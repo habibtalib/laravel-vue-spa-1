@@ -10,7 +10,7 @@
       <router-view></router-view>
     </div>
   </div>-->
-  <v-app dark id="inspire" color="#bf1f31">
+  <v-app id="inspire" color="#bf1f31">
     <v-navigation-drawer fixed clipped v-model="drawer" app>
       <v-list dense>
         <v-list-tile v-if="!$auth.check()" v-for="item in routes.unlogged" :key="item.text" @click>
@@ -68,7 +68,7 @@
     <v-toolbar color="#bf1f31" dense fixed clipped-left app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="mr-5 align-center">
-        <span class="title">Meeracle</span>
+        <span style="color:white" class="title">MEERACLE</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-layout row align-center style="max-width: 650px">
@@ -82,10 +82,10 @@
         ></v-text-field>-->
       </v-layout>
       <v-btn to="/cart" color="#bf1f31" class="button is-info">
-        <span class="icon">
+        <span style="color:white" class="icon">
           <i class="fa fa-shopping-cart"></i>
         </span>
-        <span>({{itemsInCart}})</span>
+        <span style="color:white">({{itemsInCart}})</span>
       </v-btn>
     </v-toolbar>
     <router-view></router-view>
@@ -128,8 +128,9 @@ export default {
           //   path: "dashboard",
           //   icon: "important_devices"
           // },
+          { icon: "home", text: "Home", path: "/" },
           { icon: "store", text: "Sell Product", path: "sell" },
-          { icon: "store", text: "Sell Merchandise", path: "merchandise" },
+          { icon: "watch", text: "Sell Merchandise", path: "merchandise" },
           { icon: "people", text: "Genelogy", path: "genelogy" },
           { icon: "history", text: "History", path: "history" }
         ],

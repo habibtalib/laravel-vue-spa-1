@@ -29,14 +29,7 @@ window.Vue = Vue;
 // Set Vue router
 Vue.router = router;
 Vue.use(VueRouter);
-Vue.use(Vuetify, {
-    theme: {
-        primary: "#3f51b5",
-        secondary: "#b0bec5",
-        accent: "#8c9eff",
-        error: "#b71c1c"
-    }
-});
+Vue.use(Vuetify);
 // Set Vue authentication
 Vue.use(VueAxios, axios);
 axios.defaults.baseURL = `/api`;

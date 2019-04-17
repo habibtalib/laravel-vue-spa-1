@@ -13,8 +13,8 @@
           <v-container fill-height>
             <v-layout align-center>
               <v-flex>
-                <h4>{{item.title}}</h4>
-                <span>{{item.desc}}</span>
+                <h4 style="color:white">{{item.title}}</h4>
+                <h5 style="color:white">{{item.desc}}</h5>
               </v-flex>
             </v-layout>
           </v-container>
@@ -44,7 +44,7 @@
         <span>
           <span>Login</span>
         </span>
-        <v-icon>lock</v-icon>
+        <v-icon>lock_open</v-icon>
       </v-btn>
 
       <!-- <v-btn color="#bf1f31" flat href="/meeracle.apk">
@@ -54,7 +54,7 @@
 
       <v-btn color="#bf1f31" flat to="register">
         <span>Register</span>
-        <v-icon>history</v-icon>
+        <v-icon>description</v-icon>
       </v-btn>
     </v-bottom-nav>
   </v-content>
@@ -66,12 +66,12 @@ export default {
       items: [
         {
           src: "/images/product-07.png",
-          title: "Meeracle Gemstone Cleanser",
+          title: "MEERACLE Gemstone Cleanser",
           desc: "Cleaner than ever."
         },
         {
           src: "/images/product-08.png",
-          title: "Meeracle Gemstone Serum",
+          title: "MEERACLE Gemstone Serum",
           desc: "Fast result."
         }
       ]

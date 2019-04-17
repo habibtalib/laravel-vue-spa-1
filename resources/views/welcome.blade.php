@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="apple-touch-icon" href="/images/icons-192.png" />
-  <link rel="apple-touch-startup-image" href="/images/icons-512.png">
+  <link rel="apple-touch-icon" href="/images/icon-app.png" />
+  <link rel="apple-touch-startup-image" href="/images/icon-app.png">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="shortcut icon" href="https://meeracle.com.my/img/favicon.png">
    {{-- <link rel="apple-touch-icon" sizes="57x57" href="http://meeracle.com.my/image/favicon/apple-icon-57x57.png">
