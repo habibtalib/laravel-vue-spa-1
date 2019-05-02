@@ -44,7 +44,7 @@ export default {
     })
   },
   created() {
-    this.$store.dispatch("loadMerhandise");
+    this.$store.dispatch("loadProducts");
   },
   data() {
     return {

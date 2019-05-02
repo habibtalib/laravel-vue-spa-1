@@ -13,7 +13,7 @@
         <v-stepper v-model="e1" vertical>
           <v-stepper-step step="1" complete>User Information</v-stepper-step>
           <v-stepper-content step="1">
-            <v-card class="mb-5" color="#bf1f31">
+            <v-card class="mb-5" color="white">
               <v-text-field prepend-icon="person" v-model="name" label="Full Name" required></v-text-field>
               <v-text-field
                 prepend-icon="mail"
@@ -67,7 +67,7 @@
                 type="password"
               ></v-text-field>
               <v-text-field prepend-icon="map" v-model="city" label="City" type="text"></v-text-field>
-              <v-text-field prepend-icon="map" v-model="province" label="Porvince" type="text"></v-text-field>
+              <!-- <v-text-field prepend-icon="map" v-model="province" label="Province" type="text"></v-text-field> -->
               <v-select
                 prepend-icon="map"
                 :items="states"
@@ -84,7 +84,7 @@
           </v-stepper-content>
           <v-stepper-step step="2" complete>Referals</v-stepper-step>
           <v-stepper-content step="2">
-            <v-card class="mb-5" color="#bf1f31" height="200px">
+            <v-card class="mb-5" color="white" height="200px">
               <v-text-field
                 prepend-icon="person"
                 v-model="leader_name"

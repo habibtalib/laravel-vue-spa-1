@@ -15,13 +15,29 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $product = Product::where('type', 1)->get();
+        $product = Product::where('type', 0)->get();
         return response()->json(
             [
                 'status' => 'success',
                 'data' => $product,
             ], 200);
 
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function merchandise()
+    {
+        //
+        $product = Product::where('type', 1)->get();
+        return response()->json(
+            [
+                'status' => 'success',
+                'data' => $product,
+            ], 200);
     }
 
     /**

@@ -12,6 +12,7 @@ import History from "./pages/History";
 import User from "./pages/User";
 import Setting from "./pages/Setting";
 import Checkout from "./pages/Checkout";
+import Buy from "./pages/Buy";
 import Dashboard from "./pages/user/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
 import ThankYou from "./pages/ThankYou";
@@ -63,6 +64,14 @@ const routes = [
         path: "/cart",
         name: "cart",
         component: Cart,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/buy",
+        name: "buy",
+        component: Buy,
         meta: {
             auth: true
         }

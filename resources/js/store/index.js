@@ -52,9 +52,24 @@ const actions = {
             serial: product.serial
         });
     },
+    removeCart({ commit }, product) {
+        console.log("remove", product);
+        commit(types.REMOVE_CART, {
+            id: product.id,
+            serial: product.serial
+        });
+    },
     loadProducts({ commit }) {
         axios
             .get('/products')
+            .then(r => r.data)
+            .then(coins => {
+                commit("SET_COINS", coins.data);
+            })
+    },
+    loadMerhandise({ commit }) {
+        axios
+            .get('/merchandise')
             .then(r => r.data)
             .then(coins => {
                 commit("SET_COINS", coins.data);
@@ -71,6 +86,9 @@ const mutations = {
             serial,
             quantity: 1
         })
+    },
+    [types.REMOVE_CART](state, { id, serial }) {
+        state.added.splice(state.added.findIndex(p => p.id === id),1)
     },
     SET_COINS(state, coins) {
         state.all = coins;

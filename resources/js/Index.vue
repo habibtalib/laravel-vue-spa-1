@@ -67,6 +67,7 @@
     </v-navigation-drawer>
     <v-toolbar color="#bf1f31" dense fixed clipped-left app>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+
       <v-toolbar-title class="mr-5 align-center">
         <span style="color:white" class="title">MEERACLE</span>
       </v-toolbar-title>
@@ -109,6 +110,7 @@ export default {
       routes: {
         // UNLOGGED
         unlogged: [
+          { icon: "home", text: "Home", path: "/" },
           {
             text: "Register",
             path: "register",
@@ -130,7 +132,8 @@ export default {
           // },
           { icon: "home", text: "Home", path: "/" },
           { icon: "store", text: "Sell Product", path: "sell" },
-          { icon: "watch", text: "Sell Merchandise", path: "merchandise" },
+          { icon: "shopping_basket", text: "Order Product", path: "buy" },
+          { icon: "watch", text: "Merchandise", path: "merchandise" },
           { icon: "people", text: "Genelogy", path: "genelogy" },
           { icon: "history", text: "History", path: "history" }
         ],
@@ -143,14 +146,7 @@ export default {
           }
         ]
       },
-      drawer: false,
-      items2: [
-        { picture: 28, text: "Joseph" },
-        { picture: 38, text: "Apple" },
-        { picture: 48, text: "Xbox Ahoy" },
-        { picture: 58, text: "Nokia" },
-        { picture: 78, text: "MKBHD" }
-      ]
+      drawer: false
     };
   },
   props: {

@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <v-container>History</v-container>
+    <v-container>Order Status</v-container>
   </v-content>
 </template>
 <script>

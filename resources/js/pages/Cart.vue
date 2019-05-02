@@ -16,15 +16,21 @@
           <thead>
             <tr>
               <td>Name</td>
-              <td>Serial</td>
+              <td></td>
               <td>Quantity</td>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(p, index) in products" :key="index">
-              <td>{{ p.product.name }}</td>
-              <td>{{ p.serial }}</td>
-              <td>{{ p.quantity }}</td>
+              <td>
+                {{ p.product.name }}
+                <a style="color:blue" @click="remove(p)">remove</a>
+              </td>
+              <!-- <td>{{ p.serial }}</td> -->
+              <td></td>
+              <td>
+                <input type="number" :value="p.quantity">
+              </td>
             </tr>
             <tr>
               <td>
@@ -125,6 +131,9 @@ export default {
     }
   },
   methods: {
+    remove(product) {
+      this.$store.dispatch("removeCart", product);
+    },
     checkout() {
       axios.post("/checkout/"),
         {
