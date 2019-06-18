@@ -9,6 +9,8 @@ const debug = process.env.NODE_ENV !== 'production'
 // initial state
 const state = {
     added: [],
+    orders: [],
+    user: {},
     all: [
         {
             id: "1",
@@ -29,6 +31,8 @@ const state = {
 // getters
 const getters = {
     allProducts: state => state.all, // would need action/mutation if data fetched async
+    orders: state => state.orders,
+    user: state => state.user,
     getNumberOfProducts: state => (state.all) ? state.all.length : 0,
     cartProducts: state => {
         return state.added.map(({ id, serial, quantity }) => {
@@ -49,6 +53,7 @@ const actions = {
         console.log("added", product);
         commit(types.ADD_TO_CART, {
             id: product.id,
+            quantity: product.quantity || 1,
             serial: product.serial
         });
     },
@@ -56,6 +61,7 @@ const actions = {
         console.log("remove", product);
         commit(types.REMOVE_CART, {
             id: product.id,
+            quantity: product.quantity,
             serial: product.serial
         });
     },
@@ -67,6 +73,14 @@ const actions = {
                 commit("SET_COINS", coins.data);
             })
     },
+    loadUser({ commit }) {
+        axios
+            .get('/user')
+            .then(r => r.data)
+            .then(coins => {
+                commit("SET_USER", coins.user);
+            })
+    },
     loadMerhandise({ commit }) {
         axios
             .get('/merchandise')
@@ -74,25 +88,59 @@ const actions = {
             .then(coins => {
                 commit("SET_COINS", coins.data);
             })
+    },
+    loadOrders({ commit }) {
+        axios
+            .get('/orders')
+            .then(r => r.data)
+            .then(coins => {
+                commit("SET_ORDERS", coins.data);
+            })
+    },
+    loadBuyerOrders({ commit }) {
+        axios
+            .get('/buyer-orders')
+            .then(r => r.data)
+            .then(coins => {
+                commit("SET_ORDERS", coins.data);
+            })
     }
 }
 
 // mutations
 const mutations = {
 
-    [types.ADD_TO_CART](state, { id, serial }) {
-        state.added.push({
-            id,
-            serial,
-            quantity: 1
-        })
+    [types.ADD_TO_CART](state, { id, serial, quantity }) {
+        var product = state.added.find(p => p.id === id)
+        if (product) {
+            state.added.splice(state.added.findIndex(p => p.id === id), 1)
+            quantity = product.quantity + quantity
+            state.added.push({
+                id,
+                serial,
+                quantity
+            })
+        } else {
+            state.added.push({
+                id,
+                serial,
+                quantity
+            })
+        }
+        
     },
     [types.REMOVE_CART](state, { id, serial }) {
         state.added.splice(state.added.findIndex(p => p.id === id),1)
     },
     SET_COINS(state, coins) {
         state.all = coins;
-    }
+    },
+    SET_ORDERS(state, coins) {
+        state.orders = coins;
+    },
+    SET_USER(state, coins) {
+        state.user = coins;
+    },
 }
 
 // one store for entire application

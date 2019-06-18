@@ -14,6 +14,7 @@
           <v-stepper-step step="1" complete>User Information</v-stepper-step>
           <v-stepper-content step="1">
             <v-card class="mb-5" color="white">
+              <v-text-field prepend-icon="person" v-model="refID" label="Refreal ID" disabled=""></v-text-field>
               <v-text-field prepend-icon="person" v-model="name" label="Full Name" required></v-text-field>
               <v-text-field
                 prepend-icon="mail"
@@ -78,40 +79,9 @@
               ></v-select>
             </v-card>
 
-            <v-btn color="primary" @click="e1 = 2">Next</v-btn>
-
-            <v-btn flat>Cancel</v-btn>
-          </v-stepper-content>
-          <v-stepper-step step="2" complete>Referals</v-stepper-step>
-          <v-stepper-content step="2">
-            <v-card class="mb-5" color="white" height="200px">
-              <v-text-field
-                prepend-icon="person"
-                v-model="leader_name"
-                label="Leader Name"
-                required
-              ></v-text-field>
-              <v-text-field
-                prepend-icon="person"
-                v-model="leader_phone"
-                label="Leader Phone Number"
-                required
-              ></v-text-field>
-              <v-select
-                prepend-icon="person"
-                :items="masterStockist"
-                label="Master Stockist"
-                item-value="id"
-                item-text="value"
-                v-model="master_stockist"
-                single-line
-                menu-props="bottom"
-              ></v-select>
-            </v-card>
-
             <v-btn color="primary" @click="register">Submit</v-btn>
 
-            <v-btn flat @click="e1 = 1">Previous</v-btn>
+            <v-btn flat>Cancel</v-btn>
           </v-stepper-content>
         </v-stepper>
       </v-form>
@@ -169,6 +139,7 @@ export default {
       leader_phone: "",
       master_stockist: "",
       state: "",
+      refID: this.$route.params.id,
       province: "",
       has_error: false,
       error: "",
@@ -241,9 +212,10 @@ export default {
           phone: app.phone,
           state: app.state,
           province: app.province,
-          leader_name: app.leader_name,
-          leader_phone: app.leader_phone,
-          master_stockist: app.master_stockist
+          refID: app.refID,
+          // leader_name: app.leader_name,
+          // leader_phone: app.leader_phone,
+          // master_stockist: app.master_stockist
         },
         success: function() {
           app.success = true;

@@ -24,6 +24,17 @@
               </v-layout>
               <v-divider light></v-divider>
               <v-card-actions class="pa-3">
+                <v-flex xs1 sm1 md1>
+                <v-text-field
+                  label="Quantity"
+                  value="1"
+                  v-model="product.quantity"
+                  background-color="white"
+                  color="white"
+                  type="number"
+                  outline
+                ></v-text-field>
+              </v-flex>
                 <v-btn @click="addToCart(product)">Add to Cart</v-btn>
               </v-card-actions>
             </v-card>
@@ -52,6 +63,7 @@ export default {
       url: "",
       serial: "",
       product: "",
+      quantity: 1,
       store: 0,
       items: [
         { id: "1", name: "Meeracle Gemstone Serum" },

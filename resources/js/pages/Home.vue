@@ -21,7 +21,7 @@
         </v-responsive>
       </v-carousel-item>
     </v-carousel>
-    <v-bottom-nav :value="true" absolute color="transparent" v-if="$auth.check()">
+    <!-- <v-bottom-nav :value="true" absolute color="transparent" v-if="$auth.check()">
       <v-btn color="#bf1f31" flat to="sell">
         <span>
           <span>Sell Product</span>
@@ -38,8 +38,8 @@
         <span>History</span>
         <v-icon>history</v-icon>
       </v-btn>
-    </v-bottom-nav>
-    <v-bottom-nav :value="true" absolute color="transparent" v-if="!$auth.check()">
+    </v-bottom-nav>-->
+    <!-- <v-bottom-nav :value="true" absolute color="transparent" v-if="!$auth.check()">
       <v-btn color="#bf1f31" flat to="sell">
         <span>
           <span>Login</span>
@@ -47,16 +47,16 @@
         <v-icon>lock_open</v-icon>
       </v-btn>
 
-      <!-- <v-btn color="#bf1f31" flat href="/meeracle.apk">
+      <v-btn color="#bf1f31" flat href="/meeracle.apk">
         <span>Download</span>
         <v-icon>tablet</v-icon>
-      </v-btn>-->
+      </v-btn>
 
       <v-btn color="#bf1f31" flat to="register">
         <span>Register</span>
         <v-icon>description</v-icon>
       </v-btn>
-    </v-bottom-nav>
+    </v-bottom-nav>-->
   </v-content>
 </template>
 <script>

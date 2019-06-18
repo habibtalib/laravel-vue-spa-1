@@ -10,8 +10,11 @@ import Cart from "./pages/Cart";
 import Genelogy from "./pages/Genelogy";
 import History from "./pages/History";
 import User from "./pages/User";
+import DownlineOrder from "./pages/DownlineOrder";
+import InviteMembers from "./pages/InviteMembers";
 import Setting from "./pages/Setting";
 import Checkout from "./pages/Checkout";
+import OrderDetail from "./pages/OrderDetail";
 import Buy from "./pages/Buy";
 import Dashboard from "./pages/user/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
@@ -28,19 +31,19 @@ const routes = [
         }
     },
     {
-        path: "/thankyou",
-        name: "thankyou",
-        component: ThankYou,
+        path: "/register/:id",
+        name: "register",
+        component: Register,
         meta: {
             auth: undefined
         }
     },
     {
-        path: "/register",
-        name: "register",
-        component: Register,
+        path: "/thankyou",
+        name: "thankyou",
+        component: ThankYou,
         meta: {
-            auth: false
+            auth: undefined
         }
     },
     {
@@ -128,6 +131,30 @@ const routes = [
         path: "/checkout",
         name: "checkout",
         component: Checkout,
+        meta: {
+            auth: true
+        }
+    }, 
+    {
+        path: "/downline-order",
+        name: "downlineOrder",
+        component: DownlineOrder,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/invite-members",
+        name: "inviteMembers",
+        component: InviteMembers,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/order/:id",
+        name: "orderDetail",
+        component: OrderDetail,
         meta: {
             auth: true
         }

@@ -29,6 +29,17 @@ class UserController extends Controller
             ], 200);
     }
 
+    public function info()
+    {
+        $user = User::find(auth()->user()->id);
+
+        return response()->json(
+            [
+                'status' => 'success',
+                'user' => $user->toArray(),
+            ], 200);
+    }
+
     public function getDownline()
     {
         $members = User::where('parent_id', auth()->user()->id)->get();
@@ -38,6 +49,12 @@ class UserController extends Controller
                 'user' => $members->toArray(),
             ], 200);
 
+    }
+
+    public function invite($code)
+    {
+        $user = User::find($code);
+        return view('invite', compact('user'));
     }
 
 }

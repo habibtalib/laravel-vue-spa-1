@@ -9,8 +9,8 @@
         </v-card-title>
         <p v-show="!products.length">
           <i>Your cart is empty!</i>
-          <router-link to="sell">Go Scan Product</router-link>or
-          <router-link to="merchandise">Go Sell Merchandise</router-link>
+          <router-link to="buy">Purhcase Product</router-link>or
+          <router-link to="merchandise">Purchase Merchandise</router-link>
         </p>
         <table class="table is-striped" v-show="products.length">
           <thead>
@@ -29,7 +29,16 @@
               <!-- <td>{{ p.serial }}</td> -->
               <td></td>
               <td>
-                <input type="number" :value="p.quantity">
+                 <v-flex xs12 sm6 md3>
+                  <v-text-field
+                  value="1"
+                  v-model="p.quantity"
+                  type="number"
+                  outline
+                ></v-text-field>
+                </v-flex>
+              
+                <!-- <input type="number" :value="p.quantity"> -->
               </td>
             </tr>
             <tr>
@@ -47,11 +56,11 @@
       <v-card v-show="products.length">
         <v-card-title primary-title>
           <div>
-            <h6 class="headline mb-0">Buyer Details</h6>
+            <!-- <h6 class="headline mb-0">Buyer Details</h6> -->
           </div>
         </v-card-title>
         <v-form>
-          <v-select
+          <!-- <v-select
             prepend-icon="people"
             :items="downline"
             item-text="name"
@@ -63,7 +72,7 @@
           <v-text-field prepend-icon="person" v-model="phone" label="Phone Number" required></v-text-field>
           <v-text-field prepend-icon="people" v-model="email" label="E-mail" required></v-text-field>
           <v-text-field prepend-icon="map" v-model="city" label="City" type="text"></v-text-field>
-          <v-text-field prepend-icon="map" v-model="province" label="Porvince" type="text"></v-text-field>
+          <v-text-field prepend-icon="map" v-model="province" label="Province" type="text"></v-text-field>
           <v-select
             prepend-icon="map"
             :items="states"
@@ -71,9 +80,9 @@
             item-value="key"
             v-model="state"
             label="States"
-          ></v-select>
+          ></v-select> -->
           <p>
-            <v-btn @click="checkout">Checkout</v-btn>
+            <v-btn @click="checkout">Purchase Order</v-btn>
           </p>
         </v-form>
       </v-card>
@@ -93,6 +102,7 @@ export default {
       province: "",
       downline: [],
       downline_id: "",
+      quantity: 1,
       states: [
         { key: 1, value: "Wilayah Persekutuan" },
         { key: 2, value: "Selangor" },
@@ -126,7 +136,7 @@ export default {
     }),
     total() {
       return this.products.reduce((total, p) => {
-        return total + p.quantity;
+        return  total + parseInt(p.quantity);
       }, 0);
     }
   },

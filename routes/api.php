@@ -26,10 +26,13 @@ Route::group(['middleware' => 'auth:api'], function () {
     // Users
     Route::get('users', 'UserController@index')->middleware('isAdmin');
     Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
+    Route::get('user', 'UserController@info');
     Route::get('merchandise', 'ProductController@merchandise');
     Route::get('products', 'ProductController@index');
     Route::post('serial', 'ShopController@getSerialNumber');
     Route::get('downline', 'UserController@getDownline');
     Route::post('checkout', 'ShopController@checkout');
+    Route::get('orders', 'OrderController@index');
+    Route::get('buyer-orders', 'OrderController@buyerIndex');
 
 });

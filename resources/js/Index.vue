@@ -86,7 +86,7 @@
         <span style="color:white" class="icon">
           <i class="fa fa-shopping-cart"></i>
         </span>
-        <span style="color:white">({{itemsInCart}})</span>
+        <span style="color:white">({{ itemsInCart }})</span>
       </v-btn>
     </v-toolbar>
     <router-view></router-view>
@@ -100,7 +100,7 @@ export default {
   computed: {
     itemsInCart() {
       let cart = this.$store.getters.cartProducts;
-      return cart.reduce((accum, item) => accum + item.quantity, 0);
+      return cart.reduce((accum, item) => accum + parseInt(item.quantity), 0);
     }
   },
   data() {
@@ -111,14 +111,14 @@ export default {
         // UNLOGGED
         unlogged: [
           { icon: "home", text: "Home", path: "/" },
-          {
-            text: "Register",
-            path: "register",
-            icon: "description"
-          },
+          // {
+          //   text: "Register",
+          //   path: "register",
+          //   icon: "description"
+          // },
           {
             text: "Login",
-            path: "login",
+            path: "/login",
             icon: "lock_open"
           }
         ],
@@ -131,11 +131,16 @@ export default {
           //   icon: "important_devices"
           // },
           { icon: "home", text: "Home", path: "/" },
-          { icon: "store", text: "Sell Product", path: "sell" },
-          { icon: "shopping_basket", text: "Order Product", path: "buy" },
-          { icon: "watch", text: "Merchandise", path: "merchandise" },
-          { icon: "people", text: "Genelogy", path: "genelogy" },
-          { icon: "history", text: "History", path: "history" }
+          { icon: "store", text: "Manage Orders", path: "/downline-order" },
+          { icon: "shopping_basket", text: "Order Product", path: "/buy" },
+          { icon: "watch", text: "Merchandise", path: "/merchandise" },
+          { icon: "people", text: "Genelogy", path: "/genelogy" },
+          {
+            icon: "how_to_reg",
+            text: "Invite Members",
+            path: "/invite-members"
+          },
+          { icon: "history", text: "Purchase History", path: "/history" }
         ],
         // LOGGED ADMIN
         admin: [
