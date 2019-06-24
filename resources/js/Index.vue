@@ -131,6 +131,7 @@ export default {
           //   icon: "important_devices"
           // },
           { icon: "home", text: "Home", path: "/" },
+          { icon: "store", text: "Scanner", path: "/sell" },
           { icon: "store", text: "Manage Orders", path: "/downline-order" },
           { icon: "shopping_basket", text: "Order Product", path: "/buy" },
           { icon: "watch", text: "Merchandise", path: "/merchandise" },

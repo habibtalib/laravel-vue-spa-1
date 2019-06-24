@@ -12,24 +12,18 @@
             <tr>
               <td>Date / Time</td>
               <td>Total (RM)</td>
+              <td>Status</td>
               <td>Action</td>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>12th June 2019 18:50 P.M</td>
-              <td>2,000</td>
-              <td>
-                <a href="/history/1">View</a>
-              </td>
-            </tr>
             <tr v-for="(p, index) in orders" :key="index">
+              <td>{{ p.created_at }}</td>
+              <td>{{ p.total }}</td>
+              <td>{{ p.status | filterStatus}}</td>
               <td>
-                {{ p.product.name }}
-                <a style="color:blue" @click="remove(p)">remove</a>
+                <a :href="'/history/'+p.id">View</a>
               </td>
-              <td></td>
-              <td></td>
             </tr>
           </tbody>
         </table>
@@ -53,58 +47,26 @@ export default {
     };
   },
   created() {
-    let self = this;
-    axios
-      .get("/downline/")
-      .then(function(response) {
-        // handle success
-        self.downline = response.data.user;
-      })
-      .catch(function(error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function() {
-        // always executed
-      });
+    this.$store.dispatch("loadOrders");
+  },
+  filters: {
+    filterStatus: function(value) {
+      if (value === 1) {
+        return "Pending Payment";
+      }
+      if (value === 2) {
+        return "Paid";
+      }
+      if (value === 3) {
+        return "Shipped";
+      }
+    }
   },
   computed: {
     ...mapGetters({
-      products: "cartProducts"
-    }),
-    total() {
-      return this.products.reduce((total, p) => {
-        return total + p.quantity;
-      }, 0);
-    }
+      orders: "orders"
+    })
   },
-  methods: {
-    remove(product) {
-      this.$store.dispatch("removeCart", product);
-    },
-    checkout() {
-      axios.post("/checkout/"),
-        {
-          products,
-          downline_id,
-          name,
-          email,
-          city,
-          state,
-          province
-        }
-          .then(function(response) {
-            // handle success
-            self.downline = response.data.user;
-          })
-          .catch(function(error) {
-            // handle error
-            console.log(error);
-          })
-          .then(function() {
-            // always executed
-          });
-    }
-  }
+  methods: {}
 };
 </script>

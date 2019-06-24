@@ -5,15 +5,15 @@
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-text-field v-model="serial" label="Serial Number" required></v-text-field>
         <v-select
-          :items="items"
+          :items="orders"
           item-value="id"
-          item-text="name"
-          label="Product"
+          item-text="id"
+          label="Orders"
           v-model="product"
           required
           @change="check"
         ></v-select>
-        <v-btn primary large block @click="addToCart({id:product, serial})">Add To Cart</v-btn>
+        <v-btn primary large block @click="Submit({id:product, serial})">Submit</v-btn>
       </v-form>
     </v-container>
   </v-content>
@@ -30,7 +30,7 @@ export default {
     return {
       valid: true,
       url: "",
-      serial: "",
+      serial: [],
       product: "",
       store: 0,
       items: [
@@ -38,6 +38,14 @@ export default {
         { id: "2", name: "Meeracle Gemstone Cleanser" }
       ]
     };
+  },
+  computed: {
+    ...mapGetters({
+      orders: "orders"
+    })
+  },
+  created() {
+    this.$store.dispatch("loadOrders");
   },
   methods: {
     ...mapActions(["addToCart"]),
@@ -54,7 +62,9 @@ export default {
         })
         .then(function(response) {
           // handle success
-          self.serial = response.data.serial;
+          if (!self.serial.filter(response.data.serial)) {
+            self.serial.push(response.data.serial);
+          }
         })
         .catch(function(error) {
           // handle error
@@ -64,12 +74,26 @@ export default {
           // always executed
         });
     },
-    addCart({ id, name }) {
+    Submit({ id, name }) {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
       } else {
         this.product = this.serial = "";
-        this.addToCart({ id, name });
+        axios
+          .post("/serial/", {
+            url: decodedString
+          })
+          .then(function(response) {
+            // handle success
+            self.serial = response.data.serial;
+          })
+          .catch(function(error) {
+            // handle error
+            console.log(error);
+          })
+          .then(function() {
+            // always executed
+          });
       }
     }
   }

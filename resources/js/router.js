@@ -9,6 +9,7 @@ import Merchandise from "./pages/Merchandise";
 import Cart from "./pages/Cart";
 import Genelogy from "./pages/Genelogy";
 import History from "./pages/History";
+import HistoryDetail from "./pages/HistoryDetail";
 import User from "./pages/User";
 import DownlineOrder from "./pages/DownlineOrder";
 import InviteMembers from "./pages/InviteMembers";
@@ -28,6 +29,14 @@ const routes = [
         component: Home,
         meta: {
             auth: undefined
+        }
+    },
+    {
+        path: "/user/:id",
+        name: "user",
+        component: User,
+        meta: {
+            auth: true
         }
     },
     {
@@ -80,7 +89,7 @@ const routes = [
         }
     },
     {
-        path: "/sell",
+        path: "/sell/:id",
         name: "sell",
         component: Sell,
         meta: {
@@ -107,6 +116,14 @@ const routes = [
         path: "/history",
         name: "history",
         component: History,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/history/:id",
+        name: "historyDetail",
+        component: HistoryDetail,
         meta: {
             auth: true
         }

@@ -4,13 +4,13 @@
       <v-card>
         <v-card-title primary-title>
           <div>
-            <h4 class="headline mb-0">Manage Orders</h4>
+            <h4 class="headline mb-0">Manage Downline Orders</h4>
           </div>
         </v-card-title>
         <table class="table is-striped">
           <thead>
             <tr>
-              <td>Buyer Name</td>
+              <td>Buyer</td>
               <td>Date / Time</td>
               <td>Total (RM)</td>
               <td>Status</td>
@@ -19,7 +19,9 @@
           </thead>
           <tbody>
             <tr v-for="(order, index) in orders" :key="index">
-              <td>{{ order.user_id }}</td>
+              <td>
+                <a :href="'/user/'+ order.user_id">{{ order.user_id }}</a>
+              </td>
               <td>{{ order.created_at }}</td>
               <td>{{ order.total }}</td>
               <td>{{ order.status }}</td>
@@ -43,7 +45,7 @@ export default {
     })
   },
   created() {
-    this.$store.dispatch("loadOrders");
+    this.$store.dispatch("loadDownlineOrders");
   },
   data() {
     return {

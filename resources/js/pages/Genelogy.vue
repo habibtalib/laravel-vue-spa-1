@@ -4,24 +4,24 @@
       <ol class="organizational-chart">
         <li>
           <div>
-            <a href="#">You</a>
+            <a href="/user/195">You</a>
           </div>
           <ol>
             <li>
               <div>
-                <a href="#">Level 1</a>
+                <a href="/user/118">Level 1</a>
               </div>
               <ol>
                 <li>
                   <div>
-                    <a href="#">Level 2</a>
+                    <a href="/user/102">Level 2</a>
                   </div>
                 </li>
               </ol>
             </li>
             <li>
               <div>
-                <a href="#">Level 1</a>
+                <a href="/user/111">Level 1</a>
               </div>
             </li>
           </ol>

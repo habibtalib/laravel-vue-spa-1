@@ -97,7 +97,7 @@ const actions = {
                 commit("SET_ORDERS", coins.data);
             })
     },
-    loadBuyerOrders({ commit }) {
+    loadDownlineOrders({ commit }) {
         axios
             .get('/buyer-orders')
             .then(r => r.data)

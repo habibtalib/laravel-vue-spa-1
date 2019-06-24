@@ -45,33 +45,6 @@
           </tbody>
         </table>
       </v-card>
-      <v-card>
-        <v-card-title primary-title>
-          <div>
-            <h4 class="headline mb-0">Update Order</h4>
-          </div>
-        </v-card-title>
-        <table class="table is-striped">
-          <tbody>
-            <tr>
-              <td>
-                <v-select
-                  :items="status"
-                  item-text="value"
-                  item-value="key"
-                  v-model="state"
-                  label="Status"
-                ></v-select>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <a :href="'/sell/'+orders.id">Scan Code</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </v-card>
     </v-container>
   </v-content>
 </template>
@@ -89,13 +62,7 @@ export default {
       downline: [],
       downline_id: "",
       orders: [],
-      ordersItems: [],
-      status: [
-        { key: 1, value: "Pending Payment" },
-        { key: 2, value: "Paid" },
-        { key: 3, value: "Shipped" },
-        { key: 4, value: "Delivered" }
-      ]
+      ordersItems: []
     };
   },
   methods: {

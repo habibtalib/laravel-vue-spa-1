@@ -82,7 +82,7 @@ class OrderController extends Controller
         $company_profiles = CompanyProfile::first();
         $couriers = Courier::all();
         $order_statuses = OrderStatus::all();
-        $order_items = OrderItem::where('order_id', $order->id);
+        $order_items = OrderItem::where('order_id', $order->id)->get();
         $res = null;
         $contents = null;
         if ($order->bill_id) {
@@ -111,7 +111,7 @@ class OrderController extends Controller
         return response()->json(
             [
                 'status' => 'success',
-                'data' => $order,
+                'data' => ['order' => $order, 'order_items' => $order_items],
             ], 200);
 
     }

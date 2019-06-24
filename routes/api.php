@@ -25,7 +25,7 @@ Route::prefix('auth')->group(function () {
 Route::group(['middleware' => 'auth:api'], function () {
     // Users
     Route::get('users', 'UserController@index')->middleware('isAdmin');
-    Route::get('users/{id}', 'UserController@show')->middleware('isAdminOrSelf');
+    Route::get('users/{id}', 'UserController@show');
     Route::get('user', 'UserController@info');
     Route::get('merchandise', 'ProductController@merchandise');
     Route::get('products', 'ProductController@index');
@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('downline', 'UserController@getDownline');
     Route::post('checkout', 'ShopController@checkout');
     Route::get('orders', 'OrderController@index');
+    Route::get('orders/{order}', 'OrderController@show');
     Route::get('buyer-orders', 'OrderController@buyerIndex');
 
 });

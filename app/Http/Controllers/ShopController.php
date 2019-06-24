@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\OrderItem;
 use App\Product;
 use App\ProductTracker;
+use App\RolePrice;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -134,6 +137,36 @@ class ShopController extends Controller
             [
                 'status' => 'success',
                 'message' => $e,
+            ], 200);
+
+    }
+
+    public function checkout(Request $request)
+    {
+        $order = Order::create([
+            'user_id' => auth()->user()->id,
+            'status' => 1,
+            'total' => $request->total,
+            // 'postage' => $request->postage,
+            // 'note' => $request->note,
+
+        ]);
+
+        foreach ($request->products as $item) {
+            $product = RolePrice::where('product_id', $item["product"]["id"])->first();
+            OrderItem::Create([
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+                'price' => $product->price,
+                'weight' => $product->product['weight'],
+                'quantity' => $item["quantity"],
+            ]);
+        }
+
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => $order,
             ], 200);
 
     }

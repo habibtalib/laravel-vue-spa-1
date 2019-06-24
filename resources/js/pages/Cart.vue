@@ -29,15 +29,10 @@
               <!-- <td>{{ p.serial }}</td> -->
               <td></td>
               <td>
-                 <v-flex xs12 sm6 md3>
-                  <v-text-field
-                  value="1"
-                  v-model="p.quantity"
-                  type="number"
-                  outline
-                ></v-text-field>
+                <v-flex xs12 sm6 md3>
+                  <v-text-field value="1" v-model="p.quantity" type="number" outline></v-text-field>
                 </v-flex>
-              
+
                 <!-- <input type="number" :value="p.quantity"> -->
               </td>
             </tr>
@@ -60,6 +55,7 @@
           </div>
         </v-card-title>
         <v-form>
+          <v-textarea v-model="note" label="Note"></v-textarea>
           <!-- <v-select
             prepend-icon="people"
             :items="downline"
@@ -80,7 +76,7 @@
             item-value="key"
             v-model="state"
             label="States"
-          ></v-select> -->
+          ></v-select>-->
           <p>
             <v-btn @click="checkout">Purchase Order</v-btn>
           </p>
@@ -136,7 +132,7 @@ export default {
     }),
     total() {
       return this.products.reduce((total, p) => {
-        return  total + parseInt(p.quantity);
+        return total + parseInt(p.quantity);
       }, 0);
     }
   },
@@ -145,27 +141,21 @@ export default {
       this.$store.dispatch("removeCart", product);
     },
     checkout() {
-      axios.post("/checkout/"),
-        {
-          products,
-          downline_id,
-          name,
-          email,
-          city,
-          state,
-          province
-        }
-          .then(function(response) {
-            // handle success
-            self.downline = response.data.user;
-          })
-          .catch(function(error) {
-            // handle error
-            console.log(error);
-          })
-          .then(function() {
-            // always executed
-          });
+      axios
+        .post("/checkout/", {
+          products: this.products
+        })
+        .then(function(response) {
+          // handle success
+          self.downline = response.data.user;
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        })
+        .then(function() {
+          // always executed
+        });
     }
   }
 };
