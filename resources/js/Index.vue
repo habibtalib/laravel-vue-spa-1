@@ -131,7 +131,8 @@ export default {
           //   icon: "important_devices"
           // },
           { icon: "home", text: "Home", path: "/" },
-          { icon: "store", text: "Scanner", path: "/sell" },
+          { icon: "mail", text: "Inbox", path: "/inbox" },
+          { icon: "camera", text: "Scanner", path: "/sell" },
           { icon: "store", text: "Manage Orders", path: "/downline-order" },
           { icon: "shopping_basket", text: "Order Product", path: "/buy" },
           { icon: "watch", text: "Merchandise", path: "/merchandise" },
@@ -141,7 +142,8 @@ export default {
             text: "Invite Members",
             path: "/invite-members"
           },
-          { icon: "history", text: "Purchase History", path: "/history" }
+          { icon: "history", text: "Purchase History", path: "/history" },
+          { icon: "account_circle", text: "Profile Setting", path: "/setting" }
         ],
         // LOGGED ADMIN
         admin: [

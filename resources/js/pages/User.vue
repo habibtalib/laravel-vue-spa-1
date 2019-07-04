@@ -41,6 +41,30 @@
           </tbody>
         </table>
       </v-card>
+      <v-card>
+        <v-card-title primary-title>
+          <div>
+            <h4 class="headline mb-0">Stock Details</h4>
+          </div>
+        </v-card-title>
+        <table class="table is-striped">
+          <tbody>
+            <tr>
+              <td>Total In Stock</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td>Total Stock Sold</td>
+              <td>12</td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <td>Total Stock Purchased</td>
+              <td>32</td>
+            </tr>
+          </tbody>
+        </table>
+      </v-card>
     </v-container>
   </v-content>
 </template>

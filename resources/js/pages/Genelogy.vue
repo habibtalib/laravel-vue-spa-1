@@ -1,27 +1,47 @@
 <template>
   <v-content>
     <v-container>
+      <v-card>
+        <v-card-title primary-title>
+          <div>
+            <h4 class="headline mb-0">Downline Details</h4>
+          </div>
+        </v-card-title>
+        <table class="table is-striped">
+          <tbody>
+            <tr>
+              <td>Agent Pearl</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Agent Ruby</td>
+              <td>1</td>
+            </tr>
+            <tr></tr>
+          </tbody>
+        </table>
+      </v-card>
       <ol class="organizational-chart">
         <li>
           <div>
-            <a href="/user/195">You</a>
+            <a href="/user/195">You [Diamond]</a>
           </div>
           <ol>
             <li>
               <div>
-                <a href="/user/118">Level 1</a>
+                <a href="/user/118">Level 1 [Pearl]</a>
               </div>
               <ol>
                 <li>
                   <div>
-                    <a href="/user/102">Level 2</a>
+                    <a href="/user/102">Level 2 [Ruby]</a>
                   </div>
                 </li>
               </ol>
             </li>
             <li>
               <div>
-                <a href="/user/111">Level 1</a>
+                <a href="/user/111">Level 1 [Pearl]</a>
               </div>
             </li>
           </ol>

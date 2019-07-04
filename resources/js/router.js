@@ -20,6 +20,7 @@ import Buy from "./pages/Buy";
 import Dashboard from "./pages/user/Dashboard";
 import AdminDashboard from "./pages/admin/Dashboard";
 import ThankYou from "./pages/ThankYou";
+import Inbox from "./pages/Inbox";
 
 // Routes
 const routes = [
@@ -29,6 +30,14 @@ const routes = [
         component: Home,
         meta: {
             auth: undefined
+        }
+    },
+    {
+        path: "/inbox",
+        name: "inbox",
+        component: Inbox,
+        meta: {
+            auth: true
         }
     },
     {
@@ -84,6 +93,14 @@ const routes = [
         path: "/buy",
         name: "buy",
         component: Buy,
+        meta: {
+            auth: true
+        }
+    },
+    {
+        path: "/sell",
+        name: "sell",
+        component: Sell,
         meta: {
             auth: true
         }

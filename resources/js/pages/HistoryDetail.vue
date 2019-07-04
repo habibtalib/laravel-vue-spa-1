@@ -45,12 +45,32 @@
           </tbody>
         </table>
       </v-card>
+      <v-card>
+        <v-card-title primary-title>
+          <div>
+            <h4 class="headline mb-0">Payment</h4>
+          </div>
+        </v-card-title>
+        <v-card-text class="text-xs-center">
+          <upload-btn>
+            <template slot="icon">
+              <v-icon>add</v-icon>
+            </template>
+          </upload-btn>
+          <v-input type="file"></v-input>
+          <v-btn class="mx-0 font-weight-light" color="success">Update Order</v-btn>
+        </v-card-text>
+      </v-card>
     </v-container>
   </v-content>
 </template>
 <script>
+import UploadButton from "vuetify-upload-button";
 import { mapGetters } from "vuex";
 export default {
+  components: {
+    "upload-btn": UploadButton
+  },
   data() {
     return {
       email: "",
